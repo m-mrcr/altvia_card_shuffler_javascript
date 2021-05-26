@@ -1,3 +1,5 @@
+/* Visible changes made between submission and review: lines 19, 62 */
+
 @import url("https://fonts.googleapis.com/css2?family=Brygada+1918:wght@600&family=Euphoria+Script&display=swap");
 
 body {
@@ -8,30 +10,28 @@ body {
   position: relative;
 }
 
-.container.stacked .cardWrapper {
-  transform: translate(50vw, 50vh);
-}
-
-.container.fanned .cardWrapper {
-  transform: translate(50vw, 75vh)
-    rotateZ(calc(-90deg + (var(--index) * 180deg / 51))) translateY(-40vmin);
-}
-
-.container.face-down .card {
-  transform: rotateY(180deg);
-}
-
 /* Acts as a single point at the center of our card */
-.cardWrapper {
+/* METAPHOR: Person parachuting OR Flashlight */
+.cardAnchor {
   position: absolute;
   width: 0;
   height: 0;
-  transition: transform 2s;
+  transition: transform 2s, z-index 2s;
   transition-delay: calc(var(--index) * 2ms);
   z-index: var(--index);
 }
 
+.container.stacked .cardAnchor {
+  transform: translate(50vw, 50vh);
+}
+
+.container.fanned .cardAnchor {
+  transform: translate(50vw, 75vh)
+    rotateZ(calc(-90deg + (var(--index) * 180deg / 51))) translateY(-40vmin);
+}
+
 /* Positioned around single point, which can then be maniuplated */
+/* METAPHOR: Parachute OR Flashlight Projection */
 .card {
   position: absolute;
   left: -7.5rem;
@@ -45,17 +45,21 @@ body {
   transition-delay: calc(var(--index) * 20ms);
 }
 
+.container.face-down .card {
+  transform: rotateY(180deg);
+}
+
 .card .face {
-  backface-visibility: hidden;
   position: absolute;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  backface-visibility: hidden;
   background: white;
   border-radius: 0.5rem;
-  width: 100%;
-  height: 100%;
-  border: 0.13rem solid black;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
 
 .card .front {
@@ -103,5 +107,4 @@ body {
 
 .back img {
   width: 13rem;
-  justify-items: center;
 }
