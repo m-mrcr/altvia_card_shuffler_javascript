@@ -11,7 +11,7 @@ class Card {
   constructCard() {
     const container = document.getElementById("container");
     this.cardEl = document.createElement("div");
-    this.cardEl.classList.add("cardWrapper");
+    this.cardEl.classList.add("cardAnchor");
     this.setCustomIndexProperty();
     this.cardEl.innerHTML = /* html */ `
     <div class="card ${this.suit.color}">
